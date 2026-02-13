@@ -1,5 +1,5 @@
 # AeroBat工程管理
-## 初始：AeroBat 场景与渲染工具箱
+## 2026-2-8：AeroBat 场景与渲染工具箱
 面向「Target–Attacker–Defender」(TAD) 三机对抗的轻量 3D 可视化环境，含脚本策略、OBJ 模型与渲染管线，便于快速演示或二次开发。
 ### 1. 快速上手指南
 - 环境配置（Conda，推荐）  
