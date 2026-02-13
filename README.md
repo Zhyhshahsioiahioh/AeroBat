@@ -1,4 +1,4 @@
-#AeroBat工程管理
+# AeroBat工程管理
 ## 初始：AeroBat 场景与渲染工具箱
 面向「Target–Attacker–Defender」(TAD) 三机对抗的轻量 3D 可视化环境，含脚本策略、OBJ 模型与渲染管线，便于快速演示或二次开发。
 ### 1. 快速上手指南
@@ -100,7 +100,7 @@
 3) 模型：将 OBJ/纹理放入 `src/agents/3dmodels/` 或配置自定义路径。  
 4) 运行：`python main.py --cli --config config/<name>.yaml`（或在代码里 `make_env(config_path=...)`）。无需额外注册，`make_env` 会按 `scenario_name` 自动导入同名模块。
 
-###5. 类继承关系（核心）
+### 5. 类继承关系（核心）
 - 场景：`BaseScenario` → `Scenario` (src/scenarios/tad.py)。  
 - 世界：`World` → `TadWorld`。  
 - 状态：`EntityState` → `AgentState`。  
@@ -108,7 +108,7 @@
 - 环境封装：`gym.Env` → `MultiAgentEnv`。  
 - 渲染：`Attr` → `Transform`；`Geom` → `{Line, Point, PolyLine, FilledPolygon, FilledMesh, OBJ}`；`Viewer` 组合/持有上述 `Geom` 与 `Transform`。
 
-##2026-2-14修改
+## 2026-2-14修改
 -主要修改在src文件夹中，实现了四个页面的设计以及切换
 -增添了AreoBat.bat文件，可以直接运行，但注意需要切换自己的路径和环境，也可以直接运行根目录中的main.py文件，conda环境要求和上文一致
 
