@@ -1,0 +1,58 @@
+agent_params:
+  attacker:
+    color:
+    - 0.95
+    - 0.45
+    - 0.45
+    init_pos:
+    - 9.0
+    - 1.5
+    - 3.0
+    max_accel: 0.2
+    max_speed: 0.4
+    model_path: src/agents/3dmodels/attacker.obj
+    policy: 2
+    size: 0.05
+  defender:
+    color:
+    - 0.45
+    - 0.45
+    - 0.95
+    init_pos:
+    - 2.0
+    - 1.5
+    - 2.0
+    max_accel: 0.2
+    max_speed: 0.4
+    model_path: src/agents/3dmodels/defender.obj
+    size: 0.05
+  target:
+    color:
+    - 0.45
+    - 0.95
+    - 0.45
+    init_pos:
+    - 1.0
+    - 3.0
+    - 2.0
+    max_accel: 0.06
+    max_speed: 0.15
+    model_path: src/agents/3dmodels/target.obj
+    policy: 3
+    size: 0.2
+episode_length: 200
+gif_dir: gifs
+init_pos_offset: 0.2
+intercept_radius: 0.2
+launch_rescan_steps: 0
+launch_scan_N: 31
+launch_scan_horizon: 12.0
+launch_scan_u_max: 8.0
+launch_time: 10.0
+launch_time_mode: fixed
+miss_tol: 0.2
+num_attacker: 1
+num_defender: 1
+num_target: 1
+save_gif: true
+scenario_name: tad

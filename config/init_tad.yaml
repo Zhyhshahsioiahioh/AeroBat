@@ -1,0 +1,44 @@
+# Default configuration for the AeroBat TAD scenario
+scenario_name: tad
+num_target: 1
+num_attacker: 1
+num_defender: 1
+episode_length: 200
+init_pos_offset: 0.2
+
+launch_time_mode: fixed
+launch_time: 10.0
+launch_scan_N: 31
+launch_scan_horizon: 12.0
+launch_scan_u_max: 8.0
+launch_rescan_steps: 0
+miss_tol: 0.2
+intercept_radius: 0.2
+
+save_gif: True
+gif_dir: gifs
+
+agent_params:
+  target:
+    size: 0.2
+    max_speed: 0.15
+    max_accel: 0.06
+    color: [0.45, 0.95, 0.45]
+    policy: 3
+    init_pos: [1.0, 3.0, 2.0]
+    model_path: src/agents/3dmodels/target.obj
+  attacker:
+    size: 0.05
+    max_speed: 0.4
+    max_accel: 0.2
+    color: [0.95, 0.45, 0.45]
+    policy: 2
+    init_pos: [8.0, 3.0, 3.0]
+    model_path: src/agents/3dmodels/attacker.obj
+  defender:
+    size: 0.05
+    max_speed: 0.4
+    max_accel: 0.2
+    color: [0.45, 0.45, 0.95]
+    init_pos: [2.0, 1.0, 2.0]
+    model_path: src/agents/3dmodels/defender.obj
