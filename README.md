@@ -1,7 +1,7 @@
-# AeroBat 场景与渲染工具箱
+#AeroBat工程管理
+## 初始：AeroBat 场景与渲染工具箱
 面向「Target–Attacker–Defender」(TAD) 三机对抗的轻量 3D 可视化环境，含脚本策略、OBJ 模型与渲染管线，便于快速演示或二次开发。
-
-## 1. 快速上手指南
+### 1. 快速上手指南
 - 环境配置（Conda，推荐）  
   ```bash
   conda env create -f environment.yml
@@ -33,7 +33,7 @@
   - CLI 跑完一轮后自动把帧写入 `gif_dir/render_时间戳.gif`。  
   - 离屏录制：`python main.py --cli --mode rgb_array --episode_length 200`.
 
-## 2. 运行逻辑与核心组件
+### 2. 运行逻辑与核心组件
 1) 配置：`config/tad.yaml` 给出场景名、数量、初始状态、策略选择、GIF 开关等。  
 2) 入口装载：`src/scenarios/manager.py`  
    - `load_config(path)` → `SimpleNamespace`，自动记录配置所在目录。  
@@ -63,7 +63,7 @@
   - `core_3d.World` 定义 `dt=0.1`、`world_step`、实体列表等；`TadWorld.step` 先调各自策略，再 `apply_action_force` / `integrate_state`，有命中/拦截判定。  
   - `MultiAgentEnv.render` 加载 `Viewer`，第一次调用时设置相机中心；`mode='human'` 打开窗口，`mode='rgb_array'` 返回 `numpy.ndarray` 帧（列表形式，每个 viewer 一张）；`close()` 释放窗口。
 
-## 3. TAD 场景说明
+### 3. TAD 场景说明
 - 基础设定：1 Target + 1 Attacker + 1 Defender（目前只支持1v1v1），步长 0.1s，默认 300 步。T沿正 x 方向逃逸，A追击，D拦截A。
 
 - `tad.yaml` 主要参数
@@ -94,17 +94,21 @@
           return u
       ```
 
-## 4. 扩展到新场景（非 TAD）
+### 4. 扩展到新场景（非 TAD）
 1) 新建配置：复制 `config/tad.yaml` 为 `config/<name>.yaml`，设置 `scenario_name: <name>` 及自定义参数。  
 2) 编写场景：在 `src/scenarios/<name>.py` 继承 `BaseScenario`，实现 `make_world` 与至少 `reset_world`，必要时提供 `render_overlays`。若需脚本策略，定义相应 `policy` 函数。  
 3) 模型：将 OBJ/纹理放入 `src/agents/3dmodels/` 或配置自定义路径。  
 4) 运行：`python main.py --cli --config config/<name>.yaml`（或在代码里 `make_env(config_path=...)`）。无需额外注册，`make_env` 会按 `scenario_name` 自动导入同名模块。
 
-## 5. 类继承关系（核心）
+###5. 类继承关系（核心）
 - 场景：`BaseScenario` → `Scenario` (src/scenarios/tad.py)。  
 - 世界：`World` → `TadWorld`。  
 - 状态：`EntityState` → `AgentState`。  
 - 实体：`Entity` → `Agent` → `{Target, Attacker, Defender}`。  
 - 环境封装：`gym.Env` → `MultiAgentEnv`。  
 - 渲染：`Attr` → `Transform`；`Geom` → `{Line, Point, PolyLine, FilledPolygon, FilledMesh, OBJ}`；`Viewer` 组合/持有上述 `Geom` 与 `Transform`。
+
+##2026-2-14修改
+-主要修改在src文件夹中，实现了四个页面的设计以及切换
+-增添了AreoBat.bat文件，可以直接运行，但注意需要切换自己的路径和环境，也可以直接运行根目录中的main.py文件，conda环境要求和上文一致
 
